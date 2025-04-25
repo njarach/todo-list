@@ -4,7 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="d88d065c-fb78-4ff6-8608-511831056288" name="Changes" comment="+ DELETED old app directory and files">
+    <list default="true" id="d88d065c-fb78-4ff6-8608-511831056288" name="Changes" comment="+ FIXED Kernel and composer stuff, &#10;+ ADDED validator dependency">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -88,6 +88,8 @@
       <path value="$PROJECT_DIR$/vendor/doctrine/sql-formatter" />
       <path value="$PROJECT_DIR$/vendor/doctrine/deprecations" />
       <path value="$PROJECT_DIR$/vendor/doctrine/event-manager" />
+      <path value="$PROJECT_DIR$/vendor/symfony/translation-contracts" />
+      <path value="$PROJECT_DIR$/vendor/symfony/validator" />
     </include_path>
   </component>
   <component name="ProjectId" id="2tfMictUJ9ksE1xFufni4jLPzFw" />
@@ -140,7 +142,7 @@
       <workItem from="1741955732035" duration="247000" />
       <workItem from="1745303312997" duration="8000" />
       <workItem from="1745564351710" duration="229000" />
-      <workItem from="1745564718092" duration="3557000" />
+      <workItem from="1745564718092" duration="4272000" />
     </task>
     <task id="LOCAL-00001" summary="+ ADDDED unversioned files (php storm)">
       <created>1745564554561</created>
@@ -184,7 +186,14 @@
       <option name="project" value="LOCAL" />
       <updated>1745572821409</updated>
     </task>
-    <option name="localTasksCounter" value="7" />
+    <task id="LOCAL-00007" summary="+ FIXED Kernel and composer stuff, &#10;+ ADDED validator dependency">
+      <created>1745573678640</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1745573678640</updated>
+    </task>
+    <option name="localTasksCounter" value="8" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -197,6 +206,7 @@
     <MESSAGE value="+ ADDED various files, &#10;+ ADDED .env to gitignore,&#10;+ MOVED templates from views to templates directory" />
     <MESSAGE value="+ INIT php 8, &#10;+ UPDATED and INSTALLED dependencies for Symfony updates" />
     <MESSAGE value="+ DELETED old app directory and files" />
-    <option name="LAST_COMMIT_MESSAGE" value="+ DELETED old app directory and files" />
+    <MESSAGE value="+ FIXED Kernel and composer stuff, &#10;+ ADDED validator dependency" />
+    <option name="LAST_COMMIT_MESSAGE" value="+ FIXED Kernel and composer stuff, &#10;+ ADDED validator dependency" />
   </component>
 </project>
