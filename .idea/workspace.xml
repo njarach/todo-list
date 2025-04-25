@@ -4,12 +4,10 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="d88d065c-fb78-4ff6-8608-511831056288" name="Changes" comment="+ UDATED entities and repository files to use standard php 8 symfony 7 practices">
+    <list default="true" id="d88d065c-fb78-4ff6-8608-511831056288" name="Changes" comment="+ UPDATED security files, &#10;+ UPDATED SecurityController.php and LoginFormAuthenticator.php with standard symfony documentation recommandations">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Controller/SecurityController.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Controller/SecurityController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Controller/TaskController.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Controller/TaskController.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Controller/UserController.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Controller/UserController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Security/LoginFormAuthenticator.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Security/LoginFormAuthenticator.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/security/login.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/security/login.html.twig" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -235,7 +233,14 @@
       <option name="project" value="LOCAL" />
       <updated>1745587148369</updated>
     </task>
-    <option name="localTasksCounter" value="11" />
+    <task id="LOCAL-00011" summary="+ UPDATED security files, &#10;+ UPDATED SecurityController.php and LoginFormAuthenticator.php with standard symfony documentation recommandations">
+      <created>1745588047276</created>
+      <option name="number" value="00011" />
+      <option name="presentableId" value="LOCAL-00011" />
+      <option name="project" value="LOCAL" />
+      <updated>1745588047276</updated>
+    </task>
+    <option name="localTasksCounter" value="12" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -252,6 +257,7 @@
     <MESSAGE value="+ FIXED small namespace error in Kernel.php" />
     <MESSAGE value="+ UPDATED config files &#10;+ UPDATED dependencies for symfony 7" />
     <MESSAGE value="+ UDATED entities and repository files to use standard php 8 symfony 7 practices" />
-    <option name="LAST_COMMIT_MESSAGE" value="+ UDATED entities and repository files to use standard php 8 symfony 7 practices" />
+    <MESSAGE value="+ UPDATED security files, &#10;+ UPDATED SecurityController.php and LoginFormAuthenticator.php with standard symfony documentation recommandations" />
+    <option name="LAST_COMMIT_MESSAGE" value="+ UPDATED security files, &#10;+ UPDATED SecurityController.php and LoginFormAuthenticator.php with standard symfony documentation recommandations" />
   </component>
 </project>
