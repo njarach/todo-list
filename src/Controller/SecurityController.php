@@ -3,40 +3,32 @@
 namespace App\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
-use Symfony\Component\HttpFoundation\Request;
-use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Component\HttpFoundation\Response;
+use Symfony\Component\Routing\Attribute\Route;
+use Symfony\Component\Security\Http\Authentication\AuthenticationUtils;
 
 class SecurityController extends AbstractController
 {
-    /**
-     * @Route("/login", name="login")
-     */
-    public function loginAction(Request $request)
+    #[Route('/login', name: 'app_login')]
+    public function login(AuthenticationUtils $authenticationUtils): Response
     {
-        $authenticationUtils = $this->get('security.authentication_utils');
-
+        // Get the login error if there is one
         $error = $authenticationUtils->getLastAuthenticationError();
+
+        // Last username entered by the user
         $lastUsername = $authenticationUtils->getLastUsername();
 
-        return $this->render('security/login.html.twig', array(
+        return $this->render('security/login.html.twig', [
             'last_username' => $lastUsername,
-            'error'         => $error,
-        ));
+            'error' => $error,
+        ]);
     }
 
-    /**
-     * @Route("/login_check", name="login_check")
-     */
-    public function loginCheck()
+    #[Route('/logout', name: 'logout')]
+    public function logout(): void
     {
-        // This code is never executed.
-    }
-
-    /**
-     * @Route("/logout", name="logout")
-     */
-    public function logoutCheck()
-    {
-        // This code is never executed.
+        // This method can be empty - it will be intercepted by the logout key on your firewall
+        // Controller method is needed just for the route to exist
+        throw new \LogicException('This method should not be reached.');
     }
 }
