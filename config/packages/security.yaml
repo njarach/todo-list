@@ -1,29 +1,43 @@
 security:
-    encoders:
-        AppBundle\Entity\User: bcrypt
+    # Use the modern password hasher with higher algorithm settings
+    password_hashers:
+        App\Entity\User:
+            algorithm: auto
+            cost: 15  # Higher cost means more secure but slower verification
 
+    # Define user providers
     providers:
-        doctrine:
+        app_user_provider:
             entity:
-                class: AppBundle:User
+                class: App\Entity\User
                 property: username
 
+    # Firewall configuration
     firewalls:
         dev:
             pattern: ^/(_(profiler|wdt)|css|images|js)/
             security: false
 
         main:
-            anonymous: ~
-            pattern: ^/
-            form_login:
-                login_path: login
-                check_path: login_check
-                always_use_default_target_path:  true
-                default_target_path:  /
-            logout: ~
+            lazy: true
+            provider: app_user_provider
 
+            # Use the newer login form authenticator instead of form_login
+            custom_authenticator: App\Security\LoginFormAuthenticator
+
+            # Remember me functionality
+            remember_me:
+                secret: '%kernel.secret%'
+                lifetime: 604800 # 1 week
+
+            # Logout configuration
+            logout:
+                path: logout
+                target: homepage # Redirect after logout
+
+    # Access control for URL patterns
     access_control:
-        - { path: ^/login, roles: IS_AUTHENTICATED_ANONYMOUSLY }
-        - { path: ^/users, roles: IS_AUTHENTICATED_ANONYMOUSLY }
-        - { path: ^/, roles: ROLE_USER }
+        - { path: ^/login, roles: PUBLIC_ACCESS }
+        - { path: ^/register, roles: PUBLIC_ACCESS }
+        - { path: ^/admin, roles: ROLE_ADMIN }
+        - { path: ^/profile, roles: ROLE_USER }

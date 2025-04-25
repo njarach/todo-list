@@ -1,0 +1,14 @@
+twig:
+    default_path: '%kernel.project_dir%/templates'
+    form_themes: ['bootstrap_5_layout.html.twig']
+    paths:
+        '%kernel.project_dir%/assets/images': images
+    globals:
+        app_name: '%env(APP_NAME)%'
+    file_name_pattern: '*.twig'
+    debug: '%kernel.debug%'
+    auto_reload: '%kernel.debug%'
+
+when@test:
+    twig:
+        strict_variables: true
