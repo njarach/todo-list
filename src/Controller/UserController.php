@@ -36,6 +36,8 @@ class UserController extends AbstractController
                 $user->getPassword()
             );
             $user->setPassword($hashedPassword);
+            $selectedRole = $form->get('roles')->getData();
+            $user->setRoles([$selectedRole]);
 
             $userRepository->save($user, true);
 
@@ -61,6 +63,8 @@ class UserController extends AbstractController
                 $user->getPassword()
             );
             $user->setPassword($hashedPassword);
+            $selectedRole = $form->get('roles')->getData();
+            $user->setRoles([$selectedRole]);
 
             $userRepository->save($user, true);
 
