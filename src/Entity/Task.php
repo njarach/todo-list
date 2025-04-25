@@ -30,6 +30,9 @@ class Task
     #[ORM\Column(type: 'boolean')]
     private bool $isDone;
 
+    #[ORM\ManyToOne(inversedBy: 'tasks')]
+    private ?User $author = null;
+
     public function __construct()
     {
         $this->createdAt = new DateTime();
@@ -85,6 +88,18 @@ class Task
     public function toggle(bool $flag): self
     {
         $this->isDone = $flag;
+
+        return $this;
+    }
+
+    public function getAuthor(): ?User
+    {
+        return $this->author;
+    }
+
+    public function setAuthor(?User $author): static
+    {
+        $this->author = $author;
 
         return $this;
     }
