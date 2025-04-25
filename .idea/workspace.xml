@@ -4,16 +4,9 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="d88d065c-fb78-4ff6-8608-511831056288" name="Changes" comment="+ UPDATED controllers">
-      <change beforePath="$PROJECT_DIR$/.idea/php.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/php.xml" afterDir="false" />
+    <list default="true" id="d88d065c-fb78-4ff6-8608-511831056288" name="Changes" comment="+ CREATED database and first migration,&#10;+ ADDED task Author property (and reversed it in User)">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.php-version" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/composer.json" beforeDir="false" afterPath="$PROJECT_DIR$/composer.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/composer.lock" beforeDir="false" afterPath="$PROJECT_DIR$/composer.lock" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/config/bundles.php" beforeDir="false" afterPath="$PROJECT_DIR$/config/bundles.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Entity/Task.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Entity/Task.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Entity/User.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Entity/User.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/symfony.lock" beforeDir="false" afterPath="$PROJECT_DIR$/symfony.lock" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Controller/TaskController.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Controller/TaskController.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -257,7 +250,14 @@
       <option name="project" value="LOCAL" />
       <updated>1745588047276</updated>
     </task>
-    <option name="localTasksCounter" value="12" />
+    <task id="LOCAL-00012" summary="+ CREATED database and first migration,&#10;+ ADDED task Author property (and reversed it in User)">
+      <created>1745592063440</created>
+      <option name="number" value="00012" />
+      <option name="presentableId" value="LOCAL-00012" />
+      <option name="project" value="LOCAL" />
+      <updated>1745592063440</updated>
+    </task>
+    <option name="localTasksCounter" value="13" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -275,6 +275,7 @@
     <MESSAGE value="+ UPDATED config files &#10;+ UPDATED dependencies for symfony 7" />
     <MESSAGE value="+ UDATED entities and repository files to use standard php 8 symfony 7 practices" />
     <MESSAGE value="+ UPDATED security files, &#10;+ UPDATED SecurityController.php and LoginFormAuthenticator.php with standard symfony documentation recommandations" />
-    <option name="LAST_COMMIT_MESSAGE" value="+ UPDATED security files, &#10;+ UPDATED SecurityController.php and LoginFormAuthenticator.php with standard symfony documentation recommandations" />
+    <MESSAGE value="+ CREATED database and first migration,&#10;+ ADDED task Author property (and reversed it in User)" />
+    <option name="LAST_COMMIT_MESSAGE" value="+ CREATED database and first migration,&#10;+ ADDED task Author property (and reversed it in User)" />
   </component>
 </project>
