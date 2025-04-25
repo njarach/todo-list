@@ -29,6 +29,8 @@ class TaskController extends AbstractController
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
+            // Here we added the binding of the task to the User
+            $task->setAuthor($this->getUser());
             $taskRepository->save($task, true);
 
             $this->addFlash('success', 'La tâche a été bien été ajoutée.');

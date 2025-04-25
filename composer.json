@@ -30,11 +30,12 @@
         "twig/twig": "^2.12|^3.0",
         "symfony/monolog-bundle": "^3.10",
         "doctrine/doctrine-bundle": "^2.14",
-        "symfony/dotenv": "7.0.*"
+        "symfony/dotenv": "7.0.*",
+        "doctrine/doctrine-migrations-bundle": "^3.4"
     },
     "config": {
         "platform": {
-            "php": "8.2.0"
+            "php": "8.2"
         },
         "allow-plugins": {
             "symfony/flex": true,
