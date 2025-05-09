@@ -33,7 +33,8 @@
         "symfony/dotenv": "7.0.*",
         "doctrine/doctrine-migrations-bundle": "^3.4",
         "symfony/skeleton": "^7.2",
-        "symfony/apache-pack": "^1.0"
+        "symfony/apache-pack": "^1.0",
+        "symfony/asset-mapper": "7.0.*"
     },
     "config": {
         "platform": {
@@ -48,5 +49,10 @@
         "symfony/debug-bundle": "^7.2",
         "symfony/maker-bundle": "^1.62",
         "symfony/web-profiler-bundle": "7.0.*"
+    },
+    "scripts": {
+        "auto-scripts": {
+            "importmap:install": "symfony-cmd"
+        }
     }
 }
