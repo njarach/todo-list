@@ -1,0 +1,8 @@
+# config/packages/asset_mapper.yaml
+framework:
+    asset_mapper:
+        paths:
+            - '%kernel.project_dir%/assets'
+        excluded_patterns:
+            - '*/node_modules/*'
+            - '*.scss'  # Exclude source SCSS files if you're compiling them
