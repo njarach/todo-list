@@ -10,9 +10,11 @@
             <div class="thumbnail">
                 <div class="caption">
                     <h4 class="pull-right">
-                        {% if task.isDone %}<span class="glyphicon glyphicon-ok"></span>{% else %}<span class="glyphicon glyphicon-remove"></span>{% endif %}
+                        {% if task.isDone %}<span class="glyphicon text-success glyphicon-ok"></span>{% else %}<span class="glyphicon text-danger glyphicon-remove"></span>{% endif %}
                     </h4>
-                    <h4><a href="{{ path('task_edit', {'id' : task.id }) }}">{{ task.title }}</a></h4>
+                <h4>{{ task.title }}{% if task.author == app.user %}
+                        <a href="{{ path('task_edit', {'id' : task.id }) }}"><span class="glyphicon glyphicon-pencil"></span></a>
+                    {% endif %}</h4>
                     <p>{{ task.content }}</p>
                 </div>
                 <div>
@@ -29,7 +31,7 @@
         </div>
         {% else %}
             <div class="alert alert-warning" role="alert">
-                Il n'y a pas encore de tâche enregistrée. <a href="{{ path('task_create') }}" class="btn btn-warning pull-right">Créer une tâche</a>
+                Il n'y a pas encore de tâche enregistrée.
             </div>
         {% endfor %}
     </div>

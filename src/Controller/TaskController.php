@@ -23,6 +23,9 @@ class TaskController extends AbstractController
     #[Route('/tasks/create', name: 'task_create')]
     public function createAction(Request $request, TaskRepository $taskRepository): Response
     {
+        if (!$this->isGranted('ROLE_USER' && !$this->isGranted('ROLE_ADMIN'))) {
+            throw $this->createAccessDeniedException('Veuillez vous connecter pour créer une tâche.');
+        }
         $task = new Task();
         $form = $this->createForm(TaskType::class, $task);
 
@@ -46,6 +49,10 @@ class TaskController extends AbstractController
     #[Route('/tasks/{id}/edit', name: 'task_edit')]
     public function editAction(Task $task, Request $request, TaskRepository $taskRepository): Response
     {
+        if (($this->getUser() !== $task->getAuthor()) && !$this->isGranted('ROLE_ADMIN')) {
+            throw $this->createAccessDeniedException("Vous ne disposez pas de l'autorisation nécessaire pour éditer cette tâche.");
+        }
+
         $form = $this->createForm(TaskType::class, $task);
 
         $form->handleRequest($request);
@@ -78,6 +85,13 @@ class TaskController extends AbstractController
     #[Route('/tasks/{id}/delete', name: 'task_delete')]
     public function deleteTaskAction(Task $task, TaskRepository $taskRepository): Response
     {
+        if ($task->getAuthor()->getUsername() === 'anonymous' && !$this->isGranted('ROLE_ADMIN')) {
+            throw $this->createAccessDeniedException("Vous ne disposez pas de l'autorisation nécessaire pour supprimer cette tâche.");
+        }
+        if (($this->getUser() !== $task->getAuthor()) && !$this->isGranted('ROLE_ADMIN')) {
+            throw $this->createAccessDeniedException("Vous ne disposez pas de l'autorisation nécessaire pour supprimer cette tâche.");
+        }
+
         $taskRepository->remove($task, true);
 
         $this->addFlash('success', 'La tâche a bien été supprimée.');

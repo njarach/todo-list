@@ -32,7 +32,7 @@ security:
 
             # Logout configuration
             logout:
-                path: logout
+                path: app_logout
                 target: homepage # Redirect after logout
 
     # Access control for URL patterns
