@@ -2,10 +2,34 @@
 
 namespace Tests\Functional\Controller;
 
+use App\DataFixtures\TestFixtures;
+use Doctrine\Common\DataFixtures\Executor\ORMExecutor;
+use Doctrine\Common\DataFixtures\Loader;
+use Doctrine\Common\DataFixtures\Purger\ORMPurger;
 use Symfony\Bundle\FrameworkBundle\Test\WebTestCase;
 
 class TaskControllerTest extends WebTestCase
 {
+    private $entityManager;
+    protected function setUp(): void
+    {
+        $kernel = self::bootKernel();
+        $this->entityManager = $kernel->getContainer()
+            ->get('doctrine')
+            ->getManager();
+
+        $this->loadFixtures();
+    }
+
+    private function loadFixtures(): void
+    {
+        $loader = new Loader();
+        $loader->addFixture(new TestFixtures());
+
+        $purger = new ORMPurger($this->entityManager);
+        $executor = new ORMExecutor($this->entityManager, $purger);
+        $executor->execute($loader->getFixtures());
+    }
     public function testCreateTask()
     {
         $client = static::createClient();

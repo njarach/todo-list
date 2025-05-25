@@ -4,25 +4,19 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="d88d065c-fb78-4ff6-8608-511831056288" name="Changes" comment="+ UPDATED bootstrap to latest version, &#10;+ ADDED importmap and assetmapper">
-      <change afterPath="$PROJECT_DIR$/src/DataFixtures/TestFixtures.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/tests/Functional/Controller/TaskControllerTest.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/tests/Functional/Controller/UserControllerTest.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/tests/Functional/Security/AccessControlTest.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/tests/SimpleTest.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/tests/Unit/Entity/TaskTest.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/tests/Unit/Repository/TaskRepositoryTest.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
+    <list default="true" id="d88d065c-fb78-4ff6-8608-511831056288" name="Changes" comment="+ ADDED basic tests,&#10;+ ADDED fixtures, &#10;+ ADDED basic test environment,&#10;+ FIXED minor things to make tests work">
       <change beforePath="$PROJECT_DIR$/.idea/php.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/php.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/projet8-TodoList.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/projet8-TodoList.iml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/composer.json" beforeDir="false" afterPath="$PROJECT_DIR$/composer.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/composer.lock" beforeDir="false" afterPath="$PROJECT_DIR$/composer.lock" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/config/bundles.php" beforeDir="false" afterPath="$PROJECT_DIR$/config/bundles.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/config/packages/monolog.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/config/packages/monolog.yaml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Controller/TaskController.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Controller/TaskController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Controller/UserController.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Controller/UserController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/phpunit.xml.dist" beforeDir="false" afterPath="$PROJECT_DIR$/phpunit.xml.dist" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/DataFixtures/AppFixtures.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/DataFixtures/AppFixtures.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/DataFixtures/TestFixtures.php" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/symfony.lock" beforeDir="false" afterPath="$PROJECT_DIR$/symfony.lock" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tests/Functional/Controller/TaskControllerTest.php" beforeDir="false" afterPath="$PROJECT_DIR$/tests/Functional/Controller/TaskControllerTest.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tests/Functional/Controller/UserControllerTest.php" beforeDir="false" afterPath="$PROJECT_DIR$/tests/Functional/Controller/UserControllerTest.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -173,6 +167,7 @@
       <path value="$PROJECT_DIR$/vendor/doctrine/data-fixtures" />
       <path value="$PROJECT_DIR$/vendor/doctrine/doctrine-fixtures-bundle" />
       <path value="$PROJECT_DIR$/vendor/symfony/phpunit-bridge" />
+      <path value="$PROJECT_DIR$/vendor/liip/test-fixtures-bundle" />
     </include_path>
   </component>
   <component name="ProjectId" id="2tfMictUJ9ksE1xFufni4jLPzFw" />
@@ -239,6 +234,7 @@
       <workItem from="1747384541424" duration="6606000" />
       <workItem from="1747392352311" duration="715000" />
       <workItem from="1747393602593" duration="318000" />
+      <workItem from="1748094650598" duration="7405000" />
     </task>
     <task id="LOCAL-00001" summary="+ ADDDED unversioned files (php storm)">
       <created>1745564554561</created>

@@ -1,126 +1,129 @@
 <?php
 
-namespace Tests\Functional\Controller;
+namespace App\Tests\Controller;
 
+use App\DataFixtures\UserFixtures;
+use App\Entity\User;
+use App\Repository\UserRepository;
+use Liip\TestFixturesBundle\Services\DatabaseToolCollection;
 use Symfony\Bundle\FrameworkBundle\Test\WebTestCase;
 
 class UserControllerTest extends WebTestCase
 {
-    public function testCreateUser()
+    private $databaseTool;
+    private $client;
+    private $userRepository;
+
+    protected function setUp(): void
     {
-        $client = static::createClient();
+        parent::setUp();
+        $this->client = static::createClient();
+        $this->databaseTool = static::getContainer()->get(DatabaseToolCollection::class);
+        $this->userRepository = static::getContainer()->get(UserRepository::class);
 
-        // Log in as admin
-        $client->request('GET', '/login');
-        $client->submitForm('Connexion', [
-            'username' => 'admin',
-            'password' => 'password'
-        ]);
+        // Load fixtures before each test
+        $this->databaseTool->get()->loadFixtures([UserFixtures::class]);
+    }
 
-        // Access user creation page
-        $client->request('GET', '/users/create');
+    public function testListUsersAsAdmin(): void
+    {
+        // Login as admin
+        $adminUser = $this->userRepository->findOneBy(['username' => 'admin']);
+        $this->client->loginUser($adminUser);
+
+        $crawler = $this->client->request('GET', '/users');
+
+        $this->assertResponseIsSuccessful();
+        $this->assertSelectorTextContains('h1', 'Liste des utilisateurs');
+        // Check if users are displayed in the table
+        $this->assertGreaterThan(0, $crawler->filter('tbody tr')->count());
+    }
+
+    public function testCreateUser(): void
+    {
+        $adminUser = $this->userRepository->findOneBy(['username' => 'admin']);
+        $this->client->loginUser($adminUser);
+
+        // Get the create form
+        $crawler = $this->client->request('GET', '/users/create');
         $this->assertResponseIsSuccessful();
 
-        // Create a new user
-        $client->submitForm('Ajouter', [
-            'user[username]' => 'testuser',
+        // Submit the form
+        $form = $crawler->selectButton('Ajouter')->form([
+            'user[username]' => 'newuser',
             'user[password][first]' => 'password123',
             'user[password][second]' => 'password123',
-            'user[email]' => 'test@example.com',
-            'user[roles]' => 'ROLE_USER'
+            'user[email]' => 'newuser@example.com',
+            'user[roles]' => 'ROLE_USER',
         ]);
 
-        // Should redirect to user list
+        $this->client->submit($form);
         $this->assertResponseRedirects('/users');
-        $client->followRedirect();
 
-        // Check that new user appears in the list
-        $this->assertSelectorTextContains('body', 'testuser');
-        $this->assertSelectorTextContains('body', 'test@example.com');
+        // Check if user was created
+        $newUser = $this->userRepository->findOneBy(['username' => 'newuser']);
+        $this->assertNotNull($newUser);
+        $this->assertEquals('newuser@example.com', $newUser->getEmail());
     }
 
-    public function testEditUser()
+    public function testEditUser(): void
     {
-        $client = static::createClient();
+        $adminUser = $this->userRepository->findOneBy(['username' => 'admin']);
+        $this->client->loginUser($adminUser);
 
-        // Log in as admin
-        $client->request('GET', '/login');
-        $client->submitForm('Connexion', [
-            'username' => 'admin',
-            'password' => 'password'
-        ]);
+        $userToEdit = $this->userRepository->findOneBy(['username' => 'user']);
 
-        // Find a user to edit
-        $entityManager = static::getContainer()->get('doctrine')->getManager();
-        $user = $entityManager->getRepository('App:User')->findOneBy(['username' => 'user']);
-
-        if (!$user) {
-            $this->markTestSkipped('User not found for testing');
-        }
-
-        // Access user edit page
-        $client->request('GET', '/users/' . $user->getId() . '/edit');
+        // Get the edit form
+        $crawler = $this->client->request('GET', '/users/'.$userToEdit->getId().'/edit');
         $this->assertResponseIsSuccessful();
 
-        // Edit the user
-        $client->submitForm('Modifier', [
+        // Submit the form with new data
+        $form = $crawler->selectButton('Modifier')->form([
             'user[username]' => 'updateduser',
-            'user[password][first]' => 'newpassword',
-            'user[password][second]' => 'newpassword',
+            'user[password][first]' => 'newpassword123',
+            'user[password][second]' => 'newpassword123',
             'user[email]' => 'updated@example.com',
-            'user[roles]' => 'ROLE_ADMIN'
+            'user[roles]' => 'ROLE_ADMIN',
         ]);
 
-        // Should redirect to user list
+        $this->client->submit($form);
         $this->assertResponseRedirects('/users');
-        $client->followRedirect();
 
-        // Check that updated user appears in the list
-        $this->assertSelectorTextContains('body', 'updateduser');
-        $this->assertSelectorTextContains('body', 'updated@example.com');
+        // Check if user was updated
+        $updatedUser = $this->userRepository->find($userToEdit->getId());
+        $this->assertEquals('updateduser', $updatedUser->getUsername());
+        $this->assertEquals('updated@example.com', $updatedUser->getEmail());
+        $this->assertContains('ROLE_ADMIN', $updatedUser->getRoles());
     }
 
-    public function testDeleteUser()
+    public function testDeleteUser(): void
     {
-        $client = static::createClient();
+        $adminUser = $this->userRepository->findOneBy(['username' => 'admin']);
+        $this->client->loginUser($adminUser);
 
-        // Log in as admin
-        $client->request('GET', '/login');
-        $client->submitForm('Connexion', [
-            'username' => 'admin',
-            'password' => 'password'
-        ]);
-
-        // Create a user to delete
-        $client->request('GET', '/users/create');
-        $client->submitForm('Ajouter', [
-            'user[username]' => 'usertodelete',
-            'user[password][first]' => 'password',
-            'user[password][second]' => 'password',
-            'user[email]' => 'delete@example.com',
-            'user[roles]' => 'ROLE_USER'
-        ]);
-        $client->followRedirect();
-
-        // Find the user to delete
-        $entityManager = static::getContainer()->get('doctrine')->getManager();
-        $userToDelete = $entityManager->getRepository('App:User')->findOneBy(['username' => 'usertodelete']);
-
-        if (!$userToDelete) {
-            $this->markTestSkipped('User not found for deletion test');
-        }
+        $userToDelete = $this->userRepository->findOneBy(['username' => 'user']);
+        $userId = $userToDelete->getId();
 
         // Delete the user
-        $client->request('GET', '/users/' . $userToDelete->getId() . '/delete');
-
-        // Should redirect to user list
+        $this->client->request('GET', '/users/'.$userId.'/delete');
         $this->assertResponseRedirects('/users');
-        $client->followRedirect();
 
-        // Check success message
-        $this->assertSelectorExists('.alert-success');
+        // Check if user was deleted
+        $deletedUser = $this->userRepository->find($userId);
+        $this->assertNull($deletedUser);
+    }
 
-        // Verify user no longer exists in the list
-        $this->assertSelectorNotExists('td:contains("usertodelete")');
+    public function testAccessDeniedForNonAdmin(): void
+    {
+        // Login as regular user
+        $regularUser = $this->userRepository->findOneBy(['username' => 'user']);
+        $this->client->loginUser($regularUser);
+
+        // Try to access admin-only pages
+        $this->client->request('GET', '/users');
+        $this->assertResponseStatusCodeSame(403);
+
+        $this->client->request('GET', '/users/create');
+        $this->assertResponseStatusCodeSame(403);
     }
 }
