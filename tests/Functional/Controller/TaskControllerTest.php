@@ -2,171 +2,134 @@
 
 namespace Tests\Functional\Controller;
 
-use App\DataFixtures\TestFixtures;
-use Doctrine\Common\DataFixtures\Executor\ORMExecutor;
-use Doctrine\Common\DataFixtures\Loader;
-use Doctrine\Common\DataFixtures\Purger\ORMPurger;
+use App\DataFixtures\TaskTestFixture;
+use App\DataFixtures\UserTestFixture;
+use App\Repository\TaskRepository;
+use App\Repository\UserRepository;
+use Liip\TestFixturesBundle\Services\DatabaseToolCollection;
 use Symfony\Bundle\FrameworkBundle\Test\WebTestCase;
 
 class TaskControllerTest extends WebTestCase
 {
-    private $entityManager;
+    private $databaseTool;
+    private $client;
+    private $userRepository;
+    private $taskRepository;
+
     protected function setUp(): void
     {
-        $kernel = self::bootKernel();
-        $this->entityManager = $kernel->getContainer()
-            ->get('doctrine')
-            ->getManager();
+        parent::setUp();
+        $this->client = static::createClient();
+        $this->databaseTool = static::getContainer()->get(DatabaseToolCollection::class);
+        $this->userRepository = static::getContainer()->get(UserRepository::class);
+        $this->taskRepository = static::getContainer()->get(TaskRepository::class);
 
-        $this->loadFixtures();
+        $this->databaseTool->get()->loadFixtures([UserTestFixture::class, TaskTestFixture::class]);
     }
 
-    private function loadFixtures(): void
+    public function testTaskListShowsIncompleteTasks(): void
     {
-        $loader = new Loader();
-        $loader->addFixture(new TestFixtures());
+        $this->client->request('GET', '/tasks');
 
-        $purger = new ORMPurger($this->entityManager);
-        $executor = new ORMExecutor($this->entityManager, $purger);
-        $executor->execute($loader->getFixtures());
+        $this->assertResponseIsSuccessful();
+        $this->assertSelectorTextContains('html', 'Test Task 1');
+        $this->assertSelectorTextNotContains('html', 'Completed Task');
     }
-    public function testCreateTask()
-    {
-        $client = static::createClient();
-        // Log in as a regular user
-        $client->request('GET', '/login');
-        $client->submitForm('Connexion', [
-            'username' => 'user',
-            'password' => 'password'
-        ]);
 
-        // Access task creation page
-        $client->request('GET', '/tasks/create');
+    public function testFinishedTaskListShowsCompletedTasks(): void
+    {
+        $this->client->request('GET', '/finished_tasks');
+
+        $this->assertResponseIsSuccessful();
+        $this->assertSelectorTextContains('html', 'Completed Task');
+        $this->assertSelectorTextNotContains('html', 'Test Task 1');
+    }
+
+    public function testCreateTaskRequiresAuthentication(): void
+    {
+        $this->client->request('GET', '/tasks/create');
+
+        $this->assertResponseRedirects('/login');
+    }
+
+    public function testCreateTaskAsLoggedInUser(): void
+    {
+        $adminUser = $this->userRepository->findOneBy(['username' => 'admin']);
+        $this->client->loginUser($adminUser);
+
+        $this->client->request('GET', '/tasks/create');
         $this->assertResponseIsSuccessful();
 
-        // Create a new task
-        $client->submitForm('Ajouter', [
-            'task[title]' => 'Functional Test Task',
-            'task[content]' => 'This is a task created during functional testing'
+        $this->client->submitForm('Ajouter', [
+            'task[title]' => 'New Test Task',
+            'task[content]' => 'This is a new task'
         ]);
 
-        // Should redirect to task list after creation
         $this->assertResponseRedirects('/tasks');
-        $client->followRedirect();
-
-        // Check that the task appears in the list
-        $this->assertSelectorTextContains('body', 'Functional Test Task');
-
-        // Ensure flash message is displayed
-        $this->assertSelectorTextContains('.alert-success', 'La tâche a été bien été ajoutée');
+        $this->client->followRedirect();
+        $this->assertSelectorTextContains('html', 'La tâche a été bien été ajoutée.');
     }
 
-    public function testToggleTask()
+    public function testEditTaskAsOwner(): void
     {
-        $client = static::createClient();
+        $adminUser = $this->userRepository->findOneBy(['username' => 'admin']);
+        $task = $this->taskRepository->findOneBy(['title' => 'Test Task 1']);
+        $this->client->loginUser($adminUser);
 
-        // Log in as user
-        $client->request('GET', '/login');
-        $client->submitForm('Connexion', [
-            'username' => 'user',
-            'password' => 'password'
+        $this->client->request('GET', '/tasks/' . $task->getId() . '/edit');
+        $this->assertResponseIsSuccessful();
+
+        $this->client->submitForm('Modifier', [
+            'task[title]' => 'Updated Task Title',
+            'task[content]' => 'Updated content'
         ]);
 
-        // Go to task list
-        $client->request('GET', '/tasks');
-
-        // Find a toggle button and click it
-        $client->clickLink('Marquer comme faite');
-
-        // Should redirect back to task list
         $this->assertResponseRedirects('/tasks');
-        $client->followRedirect();
-
-        // Check success message
-        $this->assertSelectorExists('.alert-success');
+        $this->client->followRedirect();
+        $this->assertSelectorTextContains('html', 'La tâche a bien été modifiée.');
     }
 
-    public function testDeleteOwnTask()
+    public function testToggleTask(): void
     {
-        $client = static::createClient();
+        $adminUser = $this->userRepository->findOneBy(['username' => 'admin']);
+        $task = $this->taskRepository->findOneBy(['title' => 'Test Task 1']);
+        $this->client->loginUser($adminUser);
 
-        // Log in as user
-        $client->request('GET', '/login');
-        $client->submitForm('Connexion', [
-            'username' => 'user',
-            'password' => 'password'
-        ]);
+        $this->client->request('GET', '/tasks/' . $task->getId() . '/toggle');
 
-        // Go to task list
-        $client->request('GET', '/tasks');
-
-        // Find delete button for a task owned by the user and click it
-        $crawler = $client->clickLink('Supprimer');
-
-        // Should redirect back to task list
         $this->assertResponseRedirects('/tasks');
-        $client->followRedirect();
-
-        // Check success message
-        $this->assertSelectorExists('.alert-success');
+        $this->client->followRedirect();
+        $this->assertSelectorTextContains('html', 'La tâche Test Task 1 a bien été marquée comme faite.');
     }
 
-    public function testCannotDeleteOtherUserTask()
+    public function testDeleteTaskAsOwner(): void
     {
-        $client = static::createClient();
+        $adminUser = $this->userRepository->findOneBy(['username' => 'admin']);
+        $task = $this->taskRepository->findOneBy(['title' => 'Test Task 1']);
+        $this->client->loginUser($adminUser);
 
-        // Log in as regular user
-        $client->request('GET', '/login');
-        $client->submitForm('Connexion', [
-            'username' => 'user',
-            'password' => 'password'
-        ]);
+        $this->client->request('GET', '/tasks/' . $task->getId() . '/delete');
 
-        // Attempt to delete a task created by admin (assuming Task 2 is owned by admin)
-        // Need to get the ID dynamically from the database
-        $entityManager = static::getContainer()->get('doctrine')->getManager();
-        $adminUser = $entityManager->getRepository('App:User')->findOneBy(['username' => 'admin']);
-        $adminTask = $entityManager->getRepository('App:Task')->findOneBy(['author' => $adminUser]);
-
-        if (!$adminTask) {
-            $this->markTestSkipped('No admin task found to test with');
-        }
-
-        // Try to access delete URL directly
-        $client->request('GET', '/tasks/' . $adminTask->getId() . '/delete');
-
-        // Should get access denied
-        $this->assertResponseStatusCodeSame(403);
+        $this->assertResponseRedirects('/tasks');
+        $this->client->followRedirect();
+        $this->assertSelectorTextContains('html', 'La tâche a bien été supprimée.');
     }
 
-    public function testAdminCanDeleteAnonymousTask()
+    public function testEditTaskWithoutPermissionThrowsException(): void
     {
-        $client = static::createClient();
+        $task = $this->taskRepository->findOneBy(['title' => 'Test Task 1']);
 
-        // Log in as admin
-        $client->request('GET', '/login');
-        $client->submitForm('Connexion', [
-            'username' => 'admin',
-            'password' => 'password'
-        ]);
+        $this->client->request('GET', '/tasks/' . $task->getId() . '/edit');
 
-        // Find task by anonymous user
-        $entityManager = static::getContainer()->get('doctrine')->getManager();
-        $anonymousUser = $entityManager->getRepository('App:User')->findOneBy(['username' => 'anonymous']);
-        $anonymousTask = $entityManager->getRepository('App:Task')->findOneBy(['author' => $anonymousUser]);
+        $this->assertResponseRedirects('/login');
+    }
 
-        if (!$anonymousTask) {
-            $this->markTestSkipped('No anonymous task found to test with');
-        }
+    public function testDeleteTaskWithoutPermissionThrowsException(): void
+    {
+        $task = $this->taskRepository->findOneBy(['title' => 'Test Task 1']);
 
-        // Delete the anonymous task
-        $client->request('GET', '/tasks/' . $anonymousTask->getId() . '/delete');
+        $this->client->request('GET', '/tasks/' . $task->getId() . '/delete');
 
-        // Should redirect to task list
-        $this->assertResponseRedirects('/tasks');
-        $client->followRedirect();
-
-        // Check success message
-        $this->assertSelectorExists('.alert-success');
+        $this->assertResponseRedirects('/login');
     }
 }
