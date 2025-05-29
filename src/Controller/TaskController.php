@@ -31,7 +31,7 @@ class TaskController extends AbstractController
     #[Route('/tasks/create', name: 'task_create')]
     public function createAction(Request $request, TaskRepository $taskRepository): Response
     {
-        if (!$this->isGranted('ROLE_USER' && !$this->isGranted('ROLE_ADMIN'))) {
+        if (!$this->getUser()) {
             throw $this->createAccessDeniedException('Veuillez vous connecter pour créer une tâche.');
         }
         $task = new Task();

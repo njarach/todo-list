@@ -83,6 +83,7 @@ class UserController extends AbstractController
     }
 
     #[Route('/users/{id}/delete', name: 'user_delete')]
+    #[IsGranted('ROLE_ADMIN')]
     public function deleteAction(User $user, UserRepository $userRepository): \Symfony\Component\HttpFoundation\RedirectResponse
     {
         $userRepository->remove($user, true);
