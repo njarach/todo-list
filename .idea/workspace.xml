@@ -4,18 +4,10 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="d88d065c-fb78-4ff6-8608-511831056288" name="Changes" comment="+ ADDED homepage link to various pages">
-      <change afterPath="$PROJECT_DIR$/src/DataFixtures/TaskTestFixture.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.env.test" beforeDir="false" afterPath="$PROJECT_DIR$/.env.test" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/php.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/php.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/projet8-TodoList.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/projet8-TodoList.iml" afterDir="false" />
+    <list default="true" id="d88d065c-fb78-4ff6-8608-511831056288" name="Changes" comment="+ FIXED functional tests">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/composer.lock" beforeDir="false" afterPath="$PROJECT_DIR$/composer.lock" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/importmap.php" beforeDir="false" afterPath="$PROJECT_DIR$/importmap.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/DataFixtures/UserFixtures.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/DataFixtures/UserTestFixture.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/symfony.lock" beforeDir="false" afterPath="$PROJECT_DIR$/symfony.lock" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/tests/Functional/Controller/TaskControllerTest.php" beforeDir="false" afterPath="$PROJECT_DIR$/tests/Functional/Controller/TaskControllerTest.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/tests/Functional/Controller/UserControllerTest.php" beforeDir="false" afterPath="$PROJECT_DIR$/tests/Functional/Controller/UserControllerTest.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tests/Unit/Entity/TaskTest.php" beforeDir="false" afterPath="$PROJECT_DIR$/tests/Unit/Entity/TaskTest.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tests/Unit/Repository/TaskRepositoryTest.php" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -333,7 +325,14 @@
       <option name="project" value="LOCAL" />
       <updated>1746802477530</updated>
     </task>
-    <option name="localTasksCounter" value="15" />
+    <task id="LOCAL-00015" summary="+ FIXED functional tests">
+      <created>1748516813210</created>
+      <option name="number" value="00015" />
+      <option name="presentableId" value="LOCAL-00015" />
+      <option name="project" value="LOCAL" />
+      <updated>1748516813210</updated>
+    </task>
+    <option name="localTasksCounter" value="16" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -354,7 +353,8 @@
     <MESSAGE value="+ CREATED database and first migration,&#10;+ ADDED task Author property (and reversed it in User)" />
     <MESSAGE value="+ FIXED stuff to make the app run correctly" />
     <MESSAGE value="+ ADDED homepage link to various pages" />
-    <option name="LAST_COMMIT_MESSAGE" value="+ ADDED homepage link to various pages" />
+    <MESSAGE value="+ FIXED functional tests" />
+    <option name="LAST_COMMIT_MESSAGE" value="+ FIXED functional tests" />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />

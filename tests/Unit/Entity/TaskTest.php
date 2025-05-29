@@ -4,44 +4,47 @@ namespace Tests\Unit\Entity;
 
 use App\Entity\Task;
 use App\Entity\User;
+use PHPUnit\Framework\TestCase;
 
-class TaskTest extends \PHPUnit\Framework\TestCase
+class TaskTest extends TestCase
 {
-    public function testTaskCreation()
+    public function testTaskToggle(): void
     {
         $task = new Task();
-        $task->setTitle('Test Task');
-        $task->setContent('Task content test');
-
-        $this->assertEquals('Test Task', $task->getTitle());
-        $this->assertEquals('Task content test', $task->getContent());
-        $this->assertFalse($task->isDone());
-    }
-
-    public function testTaskToggle()
-    {
-        $task = new Task();
-
-        // Default state is not done
         $this->assertFalse($task->isDone());
 
-        // Toggle to done
         $task->toggle(true);
         $this->assertTrue($task->isDone());
 
-        // Toggle back to not done
         $task->toggle(false);
         $this->assertFalse($task->isDone());
     }
 
-    public function testTaskAuthor()
+    public function testTaskAuthorRelation(): void
     {
         $user = new User();
-        $user->setUsername('taskauthor');
-
         $task = new Task();
         $task->setAuthor($user);
 
         $this->assertSame($user, $task->getAuthor());
+    }
+
+    public function testTaskBasicProperties(): void
+    {
+        $task = new Task();
+        $task->setTitle('Test Task');
+        $task->setContent('Test Content');
+
+        $this->assertEquals('Test Task', $task->getTitle());
+        $this->assertEquals('Test Content', $task->getContent());
+    }
+
+    public function testTaskCreatedAtIsSet(): void
+    {
+        $task = new Task();
+        $now = new \DateTime();
+        $task->setCreatedAt($now);
+
+        $this->assertSame($now, $task->getCreatedAt());
     }
 }
