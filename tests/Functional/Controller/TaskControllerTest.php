@@ -2,8 +2,8 @@
 
 namespace Tests\Functional\Controller;
 
-use App\DataFixtures\TaskTestFixture;
-use App\DataFixtures\UserTestFixture;
+use App\DataFixtures\TaskFixtures;
+use App\DataFixtures\UserFixtures;
 use App\Repository\TaskRepository;
 use App\Repository\UserRepository;
 use Liip\TestFixturesBundle\Services\DatabaseToolCollection;
@@ -24,7 +24,7 @@ class TaskControllerTest extends WebTestCase
         $this->userRepository = static::getContainer()->get(UserRepository::class);
         $this->taskRepository = static::getContainer()->get(TaskRepository::class);
 
-        $this->databaseTool->get()->loadFixtures([UserTestFixture::class, TaskTestFixture::class]);
+        $this->databaseTool->get()->loadFixtures([UserFixtures::class, TaskFixtures::class]);
     }
 
     public function testTaskListShowsIncompleteTasks(): void

@@ -2,7 +2,7 @@
 
 namespace Tests\Functional\Controller;
 
-use App\DataFixtures\UserTestFixture;
+use App\DataFixtures\UserFixtures;
 use App\Repository\UserRepository;
 use Liip\TestFixturesBundle\Services\DatabaseToolCollection;
 use Symfony\Bundle\FrameworkBundle\Test\WebTestCase;
@@ -21,7 +21,7 @@ class UserControllerTest extends WebTestCase
         $this->userRepository = static::getContainer()->get(UserRepository::class);
 
         // Load fixtures before each test
-        $this->databaseTool->get()->loadFixtures([UserTestFixture::class]);
+        $this->databaseTool->get()->loadFixtures([UserFixtures::class]);
     }
 
     public function testListUsersAsAdmin(): void
