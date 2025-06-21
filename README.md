@@ -2,11 +2,11 @@
 
 # ToDoList
 
-Application Todo-list développée avec Symfony 7.
+Application Todo-list développée avec Symfony 6.4 (LTS).
 
 ## Prérequis
 
-- PHP 8.2.0 minimum
+- PHP 8.1.0 minimum
 - Composer
 
 ## Installation
