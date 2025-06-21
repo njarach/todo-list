@@ -16,14 +16,14 @@ class UserController extends AbstractController
 {
     #[Route('/users', name: 'users_list')]
     #[IsGranted('ROLE_ADMIN')]
-    public function listAction(UserRepository $userRepository): Response
+    public function index(UserRepository $userRepository): Response
     {
         return $this->render('user/list.html.twig', ['users' => $userRepository->findAll()]);
     }
 
     #[Route('/users/create', name: 'user_create')]
     #[IsGranted('ROLE_ADMIN')]
-    public function createAction(
+    public function create(
         Request $request,
         UserRepository $userRepository,
         UserPasswordHasherInterface $passwordHasher
@@ -57,7 +57,7 @@ class UserController extends AbstractController
 
     #[Route('/users/{id}/edit', name: 'user_edit')]
     #[IsGranted('ROLE_ADMIN')]
-    public function editAction(User $user, UserRepository $userRepository, UserPasswordHasherInterface $passwordHasher, Request $request): \Symfony\Component\HttpFoundation\RedirectResponse|Response
+    public function edit(User $user, UserRepository $userRepository, UserPasswordHasherInterface $passwordHasher, Request $request): \Symfony\Component\HttpFoundation\RedirectResponse|Response
     {
         $form = $this->createForm(UserType::class, $user);
 
@@ -84,7 +84,7 @@ class UserController extends AbstractController
 
     #[Route('/users/{id}/delete', name: 'user_delete')]
     #[IsGranted('ROLE_ADMIN')]
-    public function deleteAction(User $user, UserRepository $userRepository): \Symfony\Component\HttpFoundation\RedirectResponse
+    public function delete(User $user, UserRepository $userRepository): \Symfony\Component\HttpFoundation\RedirectResponse
     {
         $userRepository->remove($user, true);
 

@@ -61,8 +61,8 @@ class TaskControllerTest extends WebTestCase
         $this->assertResponseIsSuccessful();
 
         $this->client->submitForm('Ajouter', [
-            'task[title]' => 'New Test Task',
-            'task[content]' => 'This is a new task'
+            'task[title]' => 'Nouvelle tâche test',
+            'task[content]' => 'Ceci est une nouvelle tâche'
         ]);
 
         $this->assertResponseRedirects('/tasks');
@@ -80,8 +80,8 @@ class TaskControllerTest extends WebTestCase
         $this->assertResponseIsSuccessful();
 
         $this->client->submitForm('Modifier', [
-            'task[title]' => 'Updated Task Title',
-            'task[content]' => 'Updated content'
+            'task[title]' => 'Titre mis à jour',
+            'task[content]' => 'Contenu mis à jour'
         ]);
 
         $this->assertResponseRedirects('/tasks');

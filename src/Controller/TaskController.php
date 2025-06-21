@@ -13,7 +13,7 @@ use Symfony\Component\Routing\Attribute\Route;
 class TaskController extends AbstractController
 {
     #[Route('/tasks', name: 'task_list')]
-    public function listAction(TaskRepository $taskRepository): Response
+    public function index(TaskRepository $taskRepository): Response
     {
         return $this->render('task/list.html.twig', [
             'tasks' => $taskRepository->findBy(['isDone'=>false])
@@ -21,7 +21,7 @@ class TaskController extends AbstractController
     }
 
     #[Route('/finished_tasks', name: 'finished_task_list')]
-    public function listFinishedAction(TaskRepository $taskRepository): Response
+    public function finishedIndex(TaskRepository $taskRepository): Response
     {
         return $this->render('task/list.html.twig', [
             'tasks' => $taskRepository->findBy(['isDone'=>true])
@@ -29,7 +29,7 @@ class TaskController extends AbstractController
     }
 
     #[Route('/tasks/create', name: 'task_create')]
-    public function createAction(Request $request, TaskRepository $taskRepository): Response
+    public function create(Request $request, TaskRepository $taskRepository): Response
     {
         if (!$this->getUser()) {
             throw $this->createAccessDeniedException('Veuillez vous connecter pour créer une tâche.');
@@ -55,7 +55,7 @@ class TaskController extends AbstractController
     }
 
     #[Route('/tasks/{id}/edit', name: 'task_edit')]
-    public function editAction(Task $task, Request $request, TaskRepository $taskRepository): Response
+    public function edit(Task $task, Request $request, TaskRepository $taskRepository): Response
     {
         if (($this->getUser() !== $task->getAuthor()) && !$this->isGranted('ROLE_ADMIN')) {
             throw $this->createAccessDeniedException("Vous ne disposez pas de l'autorisation nécessaire pour éditer cette tâche.");
@@ -80,7 +80,7 @@ class TaskController extends AbstractController
     }
 
     #[Route('/tasks/{id}/toggle', name: 'task_toggle')]
-    public function toggleTaskAction(Task $task, TaskRepository $taskRepository): Response
+    public function toggleTask(Task $task, TaskRepository $taskRepository): Response
     {
         $task->toggle(!$task->isDone());
         $taskRepository->save($task, true);
@@ -91,7 +91,7 @@ class TaskController extends AbstractController
     }
 
     #[Route('/tasks/{id}/delete', name: 'task_delete')]
-    public function deleteTaskAction(Task $task, TaskRepository $taskRepository): Response
+    public function delete(Task $task, TaskRepository $taskRepository): Response
     {
         if ($task->getAuthor()->getUsername() === 'anonymous' && !$this->isGranted('ROLE_ADMIN')) {
             throw $this->createAccessDeniedException("Vous ne disposez pas de l'autorisation nécessaire pour supprimer cette tâche.");

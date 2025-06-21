@@ -4,8 +4,17 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="d88d065c-fb78-4ff6-8608-511831056288" name="Changes" comment="+ restored fixtures, added docs">
+    <list default="true" id="d88d065c-fb78-4ff6-8608-511831056288" name="Changes" comment="+ ADDED documentation and UML">
+      <change beforePath="$PROJECT_DIR$/.idea/php.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/php.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/projet8-TodoList.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/projet8-TodoList.iml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/composer.json" beforeDir="false" afterPath="$PROJECT_DIR$/composer.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/composer.lock" beforeDir="false" afterPath="$PROJECT_DIR$/composer.lock" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Controller/TaskController.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Controller/TaskController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Controller/UserController.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Controller/UserController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/DataFixtures/UserFixtures.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/DataFixtures/UserFixtures.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tests/Functional/Controller/TaskControllerTest.php" beforeDir="false" afterPath="$PROJECT_DIR$/tests/Functional/Controller/TaskControllerTest.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tests/Functional/Security/AccessControlTest.php" beforeDir="false" afterPath="$PROJECT_DIR$/tests/Functional/Security/AccessControlTest.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -95,7 +104,6 @@
       <path value="$PROJECT_DIR$/vendor/symfony/polyfill-php83" />
       <path value="$PROJECT_DIR$/vendor/symfony/clock" />
       <path value="$PROJECT_DIR$/vendor/symfony/polyfill-php84" />
-      <path value="$PROJECT_DIR$/vendor/symfony/type-info" />
       <path value="$PROJECT_DIR$/vendor/psr/clock" />
       <path value="$PROJECT_DIR$/vendor/twig/extra-bundle" />
       <path value="$PROJECT_DIR$/vendor/monolog/monolog" />
@@ -138,7 +146,6 @@
       <path value="$PROJECT_DIR$/vendor/phpunit/php-invoker" />
       <path value="$PROJECT_DIR$/vendor/phpunit/php-text-template" />
       <path value="$PROJECT_DIR$/vendor/theseer/tokenizer" />
-      <path value="$PROJECT_DIR$/vendor/staabm/side-effects-detector" />
       <path value="$PROJECT_DIR$/vendor/sebastian/cli-parser" />
       <path value="$PROJECT_DIR$/vendor/sebastian/code-unit" />
       <path value="$PROJECT_DIR$/vendor/sebastian/complexity" />
@@ -189,11 +196,11 @@
 }]]></component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="D:\WebDev\projet8-TodoList\documentation\UML" />
       <recent name="D:\WebDev\projet8-TodoList\assets" />
       <recent name="D:\WebDev\projet8-TodoList\assets\fonts" />
       <recent name="D:\WebDev\projet8-TodoList\assets\images" />
       <recent name="D:\WebDev\projet8-TodoList\assets\js" />
-      <recent name="E:\WebDev\projet8-TodoList" />
     </key>
   </component>
   <component name="RunManager">
@@ -239,6 +246,9 @@
       <workItem from="1750233900568" duration="852000" />
       <workItem from="1750402492189" duration="595000" />
       <workItem from="1750409069659" duration="251000" />
+      <workItem from="1750409331628" duration="724000" />
+      <workItem from="1750433447273" duration="15000" />
+      <workItem from="1750512165843" duration="2559000" />
     </task>
     <task id="LOCAL-00001" summary="+ ADDDED unversioned files (php storm)">
       <created>1745564554561</created>
@@ -359,7 +369,14 @@
       <option name="project" value="LOCAL" />
       <updated>1749832389176</updated>
     </task>
-    <option name="localTasksCounter" value="18" />
+    <task id="LOCAL-00018" summary="+ ADDED documentation and UML">
+      <created>1750409458892</created>
+      <option name="number" value="00018" />
+      <option name="presentableId" value="LOCAL-00018" />
+      <option name="project" value="LOCAL" />
+      <updated>1750409458892</updated>
+    </task>
+    <option name="localTasksCounter" value="19" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -394,7 +411,8 @@
     <MESSAGE value="+ FIXED functional tests" />
     <MESSAGE value="+ increased code coverage to &gt;75% (configuring xdebug and testing stuff)" />
     <MESSAGE value="+ CHANGED" />
-    <option name="LAST_COMMIT_MESSAGE" value="+ CHANGED" />
+    <MESSAGE value="+ ADDED documentation and UML" />
+    <option name="LAST_COMMIT_MESSAGE" value="+ ADDED documentation and UML" />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />

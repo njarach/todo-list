@@ -18,7 +18,6 @@ class UserFixtures extends Fixture
 
     public function load(ObjectManager $manager): void
     {
-        // Create admin user
         $adminUser = new User();
         $adminUser->setUsername('admin');
         $adminUser->setEmail('admin@example.com');
@@ -27,7 +26,6 @@ class UserFixtures extends Fixture
         $adminUser->setPassword($hashedPassword);
         $manager->persist($adminUser);
 
-        // Create regular user
         $regularUser = new User();
         $regularUser->setUsername('user');
         $regularUser->setEmail('user@example.com');
@@ -38,7 +36,6 @@ class UserFixtures extends Fixture
 
         $manager->flush();
 
-        // Create anonymous user
         $anonymousUser = new User();
         $anonymousUser->setUsername('anonymous');
         $anonymousUser->setEmail('anonymous@example.com');
