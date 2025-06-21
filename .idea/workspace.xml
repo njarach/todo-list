@@ -4,18 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="d88d065c-fb78-4ff6-8608-511831056288" name="Changes" comment="+ ADDED documentation and UML">
-      <change beforePath="$PROJECT_DIR$/.idea/php.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/php.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/projet8-TodoList.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/projet8-TodoList.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/composer.json" beforeDir="false" afterPath="$PROJECT_DIR$/composer.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/composer.lock" beforeDir="false" afterPath="$PROJECT_DIR$/composer.lock" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Controller/TaskController.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Controller/TaskController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Controller/UserController.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Controller/UserController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/DataFixtures/UserFixtures.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/DataFixtures/UserFixtures.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/tests/Functional/Controller/TaskControllerTest.php" beforeDir="false" afterPath="$PROJECT_DIR$/tests/Functional/Controller/TaskControllerTest.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/tests/Functional/Security/AccessControlTest.php" beforeDir="false" afterPath="$PROJECT_DIR$/tests/Functional/Security/AccessControlTest.php" afterDir="false" />
-    </list>
+    <list default="true" id="d88d065c-fb78-4ff6-8608-511831056288" name="Changes" comment="+ CLEANED UP controllers, &#10;+ FIXED tests to properly assert controller responses,&#10;+ DOWNGRADED symfony bundle and dependancies to LTS version" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -248,7 +237,7 @@
       <workItem from="1750409069659" duration="251000" />
       <workItem from="1750409331628" duration="724000" />
       <workItem from="1750433447273" duration="15000" />
-      <workItem from="1750512165843" duration="2559000" />
+      <workItem from="1750512165843" duration="3381000" />
     </task>
     <task id="LOCAL-00001" summary="+ ADDDED unversioned files (php storm)">
       <created>1745564554561</created>
@@ -376,7 +365,14 @@
       <option name="project" value="LOCAL" />
       <updated>1750409458892</updated>
     </task>
-    <option name="localTasksCounter" value="19" />
+    <task id="LOCAL-00019" summary="+ CLEANED UP controllers, &#10;+ FIXED tests to properly assert controller responses,&#10;+ DOWNGRADED symfony bundle and dependancies to LTS version">
+      <created>1750514939301</created>
+      <option name="number" value="00019" />
+      <option name="presentableId" value="LOCAL-00019" />
+      <option name="project" value="LOCAL" />
+      <updated>1750514939301</updated>
+    </task>
+    <option name="localTasksCounter" value="20" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -412,7 +408,8 @@
     <MESSAGE value="+ increased code coverage to &gt;75% (configuring xdebug and testing stuff)" />
     <MESSAGE value="+ CHANGED" />
     <MESSAGE value="+ ADDED documentation and UML" />
-    <option name="LAST_COMMIT_MESSAGE" value="+ ADDED documentation and UML" />
+    <MESSAGE value="+ CLEANED UP controllers, &#10;+ FIXED tests to properly assert controller responses,&#10;+ DOWNGRADED symfony bundle and dependancies to LTS version" />
+    <option name="LAST_COMMIT_MESSAGE" value="+ CLEANED UP controllers, &#10;+ FIXED tests to properly assert controller responses,&#10;+ DOWNGRADED symfony bundle and dependancies to LTS version" />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />
