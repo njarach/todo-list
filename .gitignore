@@ -37,6 +37,7 @@
 /phpunit.xml
 /.phpunit.cache/
 /coverage/
+/reports/
 ###< phpunit/phpunit ###
 
 ###> symfony/phpunit-bridge ###

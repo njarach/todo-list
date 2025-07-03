@@ -4,7 +4,9 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="d88d065c-fb78-4ff6-8608-511831056288" name="Changes" comment="+ CLEANED UP controllers, &#10;+ FIXED tests to properly assert controller responses,&#10;+ DOWNGRADED symfony bundle and dependancies to LTS version" />
+    <list default="true" id="d88d065c-fb78-4ff6-8608-511831056288" name="Changes" comment="+ CHANGED use cases diagram">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -184,6 +186,9 @@
   }
 }]]></component>
   <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="D:\WebDev\projet8-TodoList\documentation\UML" />
+    </key>
     <key name="MoveFile.RECENT_KEYS">
       <recent name="D:\WebDev\projet8-TodoList\documentation\UML" />
       <recent name="D:\WebDev\projet8-TodoList\assets" />
@@ -237,7 +242,9 @@
       <workItem from="1750409069659" duration="251000" />
       <workItem from="1750409331628" duration="724000" />
       <workItem from="1750433447273" duration="15000" />
-      <workItem from="1750512165843" duration="3381000" />
+      <workItem from="1750512165843" duration="3491000" />
+      <workItem from="1750667623232" duration="9000" />
+      <workItem from="1751548430707" duration="477000" />
     </task>
     <task id="LOCAL-00001" summary="+ ADDDED unversioned files (php storm)">
       <created>1745564554561</created>
@@ -372,7 +379,14 @@
       <option name="project" value="LOCAL" />
       <updated>1750514939301</updated>
     </task>
-    <option name="localTasksCounter" value="20" />
+    <task id="LOCAL-00020" summary="+ CHANGED use cases diagram">
+      <created>1750515664781</created>
+      <option name="number" value="00020" />
+      <option name="presentableId" value="LOCAL-00020" />
+      <option name="project" value="LOCAL" />
+      <updated>1750515664781</updated>
+    </task>
+    <option name="localTasksCounter" value="21" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -409,7 +423,8 @@
     <MESSAGE value="+ CHANGED" />
     <MESSAGE value="+ ADDED documentation and UML" />
     <MESSAGE value="+ CLEANED UP controllers, &#10;+ FIXED tests to properly assert controller responses,&#10;+ DOWNGRADED symfony bundle and dependancies to LTS version" />
-    <option name="LAST_COMMIT_MESSAGE" value="+ CLEANED UP controllers, &#10;+ FIXED tests to properly assert controller responses,&#10;+ DOWNGRADED symfony bundle and dependancies to LTS version" />
+    <MESSAGE value="+ CHANGED use cases diagram" />
+    <option name="LAST_COMMIT_MESSAGE" value="+ CHANGED use cases diagram" />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />
